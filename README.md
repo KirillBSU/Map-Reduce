@@ -13,4 +13,5 @@
 - text.txt - пример входного файла
 - transitional.txt - файл, получившийся после применения операции Map к text.txt (формат tsv)
 - wordcount.txt - файл, получившийся после применения операции Reduce к transition.txt (формат tsv)
+
 Примечание: сортировка данных в файле transitions.txt выполняетмся в MapReduce после выполнения операции Map.
