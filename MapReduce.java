@@ -53,8 +53,14 @@ public class MapReduce {
             script_comands.add(args[i]);
         }
 
-        if (comand.equals("reduce")){
+        if (comand.equals("reduce")) {
             sortTransFile(inputfile_path);
+        } else if (!comand.equals("map")){
+            try {
+                throw (new Exception ("Wrong parameters"));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
 
         File input = new File(inputfile_path);
@@ -66,7 +72,7 @@ public class MapReduce {
         process.redirectOutput(output);
 
         process.start();
-        } catch (IOException e) {
+        } catch (IOException e ) {
             e.printStackTrace();
         }
     }
