@@ -1,7 +1,6 @@
 import java.io.*;
 import java.util.LinkedList;
 
-
 /**
  * Created by KKV on 20.03.2017.
  */
