@@ -1,4 +1,8 @@
+ed	1
 et	1
+ew	1
 re	2
 ref	1
+ret	1
+rge	1
 wer	3

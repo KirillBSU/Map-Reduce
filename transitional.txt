@@ -1,7 +1,11 @@
+ed	1
 et	1
+ew	1
 re	1
 re	1
 ref	1
+ret	1
+rge	1
 wer	1
 wer	1
 wer	1

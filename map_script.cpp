@@ -9,7 +9,7 @@ int main(int arcv, char** argv) {
 	regex word("[^[:alpha:]|' ']+");
 	const string format = " ";
 	string str; 
-	while( getline(cin, str)) {
+	getline(cin, str);
 		str = regex_replace(str, word, format, regex_constants::format_default);
 		transform(str.begin(), str.end(), str.begin(), ::tolower);
 		stringstream stream;
@@ -19,7 +19,6 @@ int main(int arcv, char** argv) {
 		while(stream >> tmp) {
 			cout << tmp << '\t' << 1 << endl;
 		}
-	}
 	return 0;
 }
 	
