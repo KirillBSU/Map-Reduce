@@ -1,6 +1,4 @@
 # Map-Reduce
-<<<<<<< HEAD
-=======
 
 Репозиторий включает:
 - map_script.cpp - выполняет операцию Map
@@ -17,4 +15,3 @@
 - wordcount.txt - файл, получившийся после применения операции Reduce к transition.txt (формат tsv)
 
 Примечание: сортировка данных в файле transitions.txt выполняетмся в MapReduce до выполнения операции Reduce.
->>>>>>> 4ab6114a4b9ed42892b915985123fb33a50de1e0
