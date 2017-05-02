@@ -1,0 +1,22 @@
+#!/bin/bash
+
+ABSOLUTE_FILENAME=`readlink -e "$0"`
+
+DIRECTORY=`dirname "$ABSOLUTE_FILENAME"`
+
+echo $DIRECTORY
+
+g++ $DIRECTORY/reduce_script.cpp -o $DIRECTORY/reduce_script
+
+g++ $DIRECTORY/map_script2.cpp -o $DIRECTORY/map_script2
+
+g++ $DIRECTORY/generate.cpp -o $DIRECTORY/generate
+
+$DIRECTORY/generate $1 $DIRECTORY/numbers.txt
+
+javac $DIRECTORY/MapReduce.java
+
+java -cp $DIRECTORY MapReduce map $DIRECTORY/map_script2 $DIRECTORY/numbers.txt $DIRECTORY/transitional1.txt $2
+
+java -cp $DIRECTORY MapReduce reduce $DIRECTORY/reduce_script $DIRECTORY/transitional1.txt $DIRECTORY/wordcount1.txt 
+

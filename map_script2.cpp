@@ -2,6 +2,7 @@
 #include <fstream>
 #include <string>
 #include <iomanip>
+#include <stdlib.h>
 using namespace std;
 
 int main(int arcv, char** argv) {
