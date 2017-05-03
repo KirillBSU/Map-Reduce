@@ -18,5 +18,5 @@ javac $DIRECTORY/MapReduce.java
 
 java -cp $DIRECTORY MapReduce map $DIRECTORY/map_script2 $DIRECTORY/numbers.txt $DIRECTORY/transitional1.txt $2
 
-java -cp $DIRECTORY MapReduce reduce $DIRECTORY/reduce_script $DIRECTORY/transitional1.txt $DIRECTORY/wordcount1.txt 
+java -cp $DIRECTORY MapReduce reduce $DIRECTORY/reduce_script $DIRECTORY/transitional1.txt $DIRECTORY/hist.txt 
 
