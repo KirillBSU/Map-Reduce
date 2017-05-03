@@ -20,3 +20,7 @@ java -cp $DIRECTORY MapReduce map $DIRECTORY/map_script2 $DIRECTORY/numbers.txt 
 
 java -cp $DIRECTORY MapReduce reduce $DIRECTORY/reduce_script $DIRECTORY/transitional1.txt $DIRECTORY/hist.txt 
 
+chmod +x $DIRECTORY/mat_bar.py
+
+$DIRECTORY/mat_bar.py $DIRECTORY/hist.txt $2
+
