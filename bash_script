@@ -1,16 +1,16 @@
-#!/bin/bash
-
+#!/bin/bash 
+# таким скриптам обычно указывают расширение .sh
 ABSOLUTE_FILENAME=`readlink -e "$0"`
 
 DIRECTORY=`dirname "$ABSOLUTE_FILENAME"`
 
 echo $DIRECTORY
 
-g++ $DIRECTORY/reduce_script.cpp -o $DIRECTORY/reduce_script
+g++ $DIRECTORY/reduce_script.cpp -o $DIRECTORY/reduce_script # раз уж так - а почему без оптимизаций (-O2)
 
-g++ $DIRECTORY/map_script2.cpp -o $DIRECTORY/map_script2
+g++ $DIRECTORY/map_script2.cpp -o $DIRECTORY/map_script2 # но вообще сочетать компиляцию и запуск в скрипте не нужно
 
-g++ $DIRECTORY/generate.cpp -o $DIRECTORY/generate
+g++ $DIRECTORY/generate.cpp -o $DIRECTORY/generate # для компиляции используют более стандартные штуки в духе MakeFile
 
 $DIRECTORY/generate $1 $DIRECTORY/numbers.txt
 
