@@ -5,7 +5,8 @@ import java.util.Vector;
 
 class GlobalVars
 {
-    public static final int capacity = 100000;
+    public static final int capacity = 100000; // Эту константу в реальности стоит выносить в конфиг
+    // (и наверное в любом кодстайле константы рекомендуют называть с капитализацией
 }
 
 class Node implements Comparable<Node>{
@@ -48,7 +49,7 @@ class ClearingFile{
             out.write("");
             out.close();
         } catch (Exception e)
-        {e.printStackTrace();}
+        {e.printStackTrace();} // стиль расставления скобок всё же стоит делать единым
     }
 }
 
@@ -60,9 +61,10 @@ class SortBigFiles {
         try {
             RandomAccessFile input_file = new RandomAccessFile(inputfile_path, "rw");
             Vector<Node> nodeVector = new Vector<>();
-            pathes.add("output0.txt");
+            pathes.add("output0.txt"); // на случай, если программу могут запускать несколько пользователей (не наш случай, но всё же)
+            // разумно генерировать случайное имя файа в этом месте
 
-            while(input_file.getFilePointer()!= input_file.length()){
+            while(input_file.getFilePointer()!= input_file.length()){ // тут очень хочется пробелов
                 String content = read(input_file, GlobalVars.capacity);
                 tokenize(content, nodeVector);
                 nodeVector.sort(Node::compareTo);
@@ -90,7 +92,8 @@ class SortBigFiles {
     }
 
 
-    private void tokenize(String cont, Vector<Node> vector){
+    private void tokenize(String cont, Vector<Node> vector){ // возможно стоило сделать этот вектор членом класса или возвращать его в качестве значения метода
+        // поскольку метод приватный, видимо, это не так важно, но было бы меньше verbosity
         StringTokenizer tokenizer = new StringTokenizer(cont, "\t\n\r\u0000");
         while(tokenizer.hasMoreTokens()){
             vector.add(new Node(tokenizer.nextToken(), tokenizer.nextToken()));
@@ -145,7 +148,7 @@ class SortBigFiles {
 
         int i = 0; int j = 0;
         BufferedWriter write_buffer = new BufferedWriter(new FileWriter(res_file_path), GlobalVars.capacity);
-        while(1 == 1){
+        while(1 == 1){ // воу, true же короче ?
             while(i < vector1.size() && j < vector2.size()){
                 if (vector1.elementAt(i).compareTo(vector2.elementAt(j)) < 0){
                     write_buffer.write(vector1.elementAt(i).toString());
@@ -172,7 +175,11 @@ class SortBigFiles {
         write_buffer.close();
     }
 
-    private boolean check_and_read(RandomAccessFile file_for_check, RandomAccessFile anotherfile,
+    // несмотря на то что в названии метода нет ни слова про write он всё-таки его делает.
+    // конечно после внимательного прочтения понятно что происходит, но реализация объекта-обёртки вида Chunk
+    // с интерфейсом next() и has_next (т.е. по сути итератора) с инкапсулированной логикой вычитывания 
+    // очередного чанка была бы значительно более аккуратной
+    private boolean check_and_read(RandomAccessFile file_for_check, RandomAccessFile anotherfile, 
                                    Vector<Node> vector_ended, Vector<Node> another_vector, int another_idx, BufferedWriter write_buffer) throws IOException {
         if (file_for_check.getFilePointer()== file_for_check.length()) {
             write_from_idx(another_vector, write_buffer, another_idx);
@@ -186,6 +193,8 @@ class SortBigFiles {
         }
     }
 
+    // вот на самом деле не очень понятный метод. зачем тут нужно преобразование tokenize - toString ? 
+    // почему просто нельзя скопировать кусок без этого преобразования?
     private void write_till_eof(RandomAccessFile file, Vector<Node> vector, BufferedWriter write_buffer) throws IOException {
         while(file.getFilePointer()!= file.length()){
             String cont = read(file, GlobalVars.capacity);
@@ -221,7 +230,7 @@ public class MapReduce {
             read_from_file.close();
 
             BufferedWriter write_to_file = new BufferedWriter(new FileWriter(inputfile_path));
-            for (Node i : transFile){
+            for (Node i : transFile){ // однобуквенные переменные хороши для индексов (и то не всегда). Node node : выглядело консистентней
                 write_to_file.write(i.toString());
                 write_to_file.newLine();
             }
@@ -233,7 +242,7 @@ public class MapReduce {
     }
     public static void main(String[] args) {
         String comand, script_path, inputfile_path, outputfile_path;
-        if (args.length < 4) {
+        if (args.length < 4) { // молчаливый reuturn в случае не указания всех опций - не ок. обычно в таком случае пишут usage
             return;
         }
 
